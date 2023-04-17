@@ -122,8 +122,8 @@ class BuildContainerImage
     {
         $contents = file_get_contents(Path::dockerfile($environment));
 
-        if ($runtime === 'docker' && ! Str::contains($contents, 'FROM laravelphp/vapor')) {
-            Helpers::warn('To ensure compatibility with the "docker" runtime, please make sure that your image is correctly configured for the x86 architecture.');
+        if (! Str::contains($contents, 'FROM laravelphp/vapor')) {
+            Helpers::warn('Temporary test...');
 
             return true;
         }

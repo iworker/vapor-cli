@@ -38,7 +38,7 @@ class Docker
      */
     public static function buildCommand($project, $environment, $cliBuildArgs, $manifestBuildArgs)
     {
-        return sprintf('docker buildx build --platform linux/arm64 --load --file=%s --tag=%s %s.',
+        return sprintf('docker build --file=%s --tag=%s %s.',
             Manifest::dockerfile($environment),
             Str::slug($project).':'.$environment,
             Collection::make($manifestBuildArgs)

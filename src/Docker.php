@@ -38,7 +38,16 @@ class Docker
      */
     public static function buildCommand($project, $environment, $cliBuildArgs, $manifestBuildArgs)
     {
-        return sprintf('docker build --file=%s --tag=%s %s.',
+        $runtime = Manifest::runtime($environment);
+
+        if (Str::endsWith($runtime, '-arm')) {
+            $platform = 'linux/arm64';
+        } else {
+            $platform = 'linux/amd64';
+        }
+
+        return sprintf('docker build --platform=%s --file=%s --tag=%s %s.',
+            $platform,
             Manifest::dockerfile($environment),
             Str::slug($project).':'.$environment,
             Collection::make($manifestBuildArgs)

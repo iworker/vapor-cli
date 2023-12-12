@@ -25,7 +25,6 @@ class AssetFiles
                 ->notName('.htaccess')
                 ->notName('web.config')
                 ->notName('browserconfig.xml')
-                ->notName('*.webmanifest')
                 ->notName('*manifest.json')
                 ->notName('*.php')
                 ->ignoreVcs(true)
